@@ -1,0 +1,35 @@
+# Secretos — NUNCA versionar
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+google_client_secret.json
+google_token.json
+service-account*.json
+
+# Dependencias / builds
+node_modules/
+.next/
+out/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Estado local del relay
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Config local de Claude Code (no compartir)
+.claude/settings.local.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

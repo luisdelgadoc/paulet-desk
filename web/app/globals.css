@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Paleta estilo WhatsApp/WhatsApp Web (pedido explicito del usuario,
+     2026-08-08) -- valores tomados de la captura de referencia. Mismo
+     mecanismo que --background/--foreground de arriba: variables en :root
+     con el valor claro, sobreescritas en el @media de mas abajo para el
+     oscuro, expuestas como utilities de Tailwind (bg-wa-*, text-wa-*,
+     border-wa-*) via @theme inline. Una sola clase sirve para los dos modos
+     -- no hace falta escribir dark: en cada lugar que se use. */
+  --wa-header: #f0f2f5; /* barra superior de la lista y del hilo */
+  --wa-list-bg: #ffffff; /* fondo del panel de la lista de conversaciones */
+  --wa-chat-bg: #efeae2; /* fondo del panel del hilo (el "papel tapiz") */
+  --wa-hover: #f5f6f6; /* fila de la lista al pasar el mouse */
+  --wa-bubble-out: #d9fdd3; /* burbuja de mensaje saliente (humano) */
+  --wa-bubble-in: #ffffff; /* burbuja de mensaje entrante (cliente/bot) */
+  --wa-accent: #008069; /* botones primarios, acentos */
+  --wa-border: #e9edef; /* separadores, bordes */
+  --wa-text-secondary: #667781; /* telefono, hora, texto secundario */
+
+  /* Paleta categorica del skill de dataviz (Fase Dashboard, 2026-08-10) --
+     slots 1-2 (azul/naranja) de references/palette.md, usados sin modificar
+     y en su orden documentado -- esa orden es la que trae la separacion CVD
+     ya validada entre pares adyacentes, no un color elegido a ojo. Solo para
+     el grafico de 2 series "Mensajes por dia" (Entrante/Saliente); el
+     grafico de barras de Pipeline por etapa usa --wa-accent (un solo hue,
+     es magnitud, no identidad -- ver comentario en dashboard/page.tsx). */
+  --series-1: #2a78d6; /* entrante */
+  --series-2: #eb6834; /* saliente */
+
+  /* Color de status (no categorico) para la barra de la etapa "Perdido" en
+     StageBarChart -- mismo rojo que ya usan los textos de error del
+     proyecto (text-red-600 dark:text-red-400), para que un valor perdido
+     se lea como "estado", no como una categoria mas de la paleta. */
+  --status-danger: #dc2626;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-wa-header: var(--wa-header);
+  --color-wa-list-bg: var(--wa-list-bg);
+  --color-wa-chat-bg: var(--wa-chat-bg);
+  --color-wa-hover: var(--wa-hover);
+  --color-wa-bubble-out: var(--wa-bubble-out);
+  --color-wa-bubble-in: var(--wa-bubble-in);
+  --color-wa-accent: var(--wa-accent);
+  --color-wa-border: var(--wa-border);
+  --color-wa-text-secondary: var(--wa-text-secondary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+
+    --wa-header: #202c33;
+    --wa-list-bg: #111b21;
+    --wa-chat-bg: #0b141a;
+    --wa-hover: #202c33;
+    --wa-bubble-out: #005c4b;
+    --wa-bubble-in: #202c33;
+    --wa-accent: #00a884;
+    --wa-border: #222d34;
+    --wa-text-secondary: #8696a0;
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+
+    --status-danger: #f87171;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}

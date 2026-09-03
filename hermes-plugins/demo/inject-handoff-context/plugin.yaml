@@ -1,0 +1,9 @@
+name: inject-handoff-context
+version: "1.0.0"
+description: >
+  Antepone al turno el contexto de lo que hablo un humano mientras tenia la
+  conversacion tomada, la primera vez que el agente procesa un mensaje despues
+  de que se la devuelvan -- Fase 9 de Paulet Desk.
+author: Paulet
+hooks:
+  - pre_llm_call

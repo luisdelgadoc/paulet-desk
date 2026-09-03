@@ -1,0 +1,25 @@
+[Unit]
+Description=Paulet Desk - Bandeja humana (Next.js)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+# PORT=3001 tiene que coincidir con el "reverse_proxy localhost:3001" del
+# bloque desk.paulet.tech en desk/Caddyfile (fuente de verdad del Caddyfile
+# completo) -- son los 2 unicos lugares donde vive este numero. Si se cambia
+# aqui, cambiar tambien alla.
+Environment="PORT=3001"
+ExecStart=/usr/local/bin/npm start
+WorkingDirectory=/root/paulet-desk/web
+Restart=always
+RestartSec=5
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

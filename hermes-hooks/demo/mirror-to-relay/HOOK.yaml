@@ -1,0 +1,7 @@
+name: mirror-to-relay
+description: >
+  Espeja cada respuesta del agente (agent:end) hacia el relay de Paulet Desk,
+  para que la bandeja humana en Supabase muestre la conversacion completa,
+  no solo lo que dice el cliente. Fire-and-forget -- ver handler.py.
+events:
+  - agent:end

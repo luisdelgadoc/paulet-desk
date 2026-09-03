@@ -1,0 +1,26 @@
+# Fuente de verdad del Caddyfile completo de Paulet Desk (relay + bandeja web).
+# Aplicar con desk/scripts/deploy_caddyfile.sh -- nunca editar /etc/caddy/Caddyfile
+# a mano en el servidor, o este archivo deja de ser la fuente de verdad real
+# (el mismo problema de config dispersa que causo el bug de la Fase 4, ver
+# las notas de arquitectura "Lineamiento permanente").
+#
+# Excepcion documentada: desk/relay/scripts/rollback_caddy.sh escribe un
+# Caddyfile MINIMO distinto a este a proposito -- es el interruptor de
+# emergencia que bypasea todo (incluida la bandeja web) y deja a Hermes
+# respondiendole al cliente directo, sin depender de nada mas. Ese es su
+# unico proposito, no se mantiene sincronizado con este archivo.
+
+demo.paulet.tech {
+    handle /whatsapp/webhook {
+        reverse_proxy localhost:8091
+    }
+    handle {
+        respond 404
+    }
+}
+
+desk.paulet.tech {
+    # 3001 tiene que coincidir con PORT= en desk/web/systemd/paulet-desk-web.service
+    # (son los 2 unicos lugares donde vive este numero).
+    reverse_proxy localhost:3001
+}

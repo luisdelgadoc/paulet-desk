@@ -1,0 +1,21 @@
+[Unit]
+Description=Paulet Desk Relay - WhatsApp webhook para Demo
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+EnvironmentFile=/root/paulet-desk/relay/.env
+ExecStart=/root/paulet-desk/relay/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port ${RELAY_PORT}
+WorkingDirectory=/root/paulet-desk/relay
+Restart=always
+RestartSec=5
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
